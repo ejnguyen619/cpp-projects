@@ -11,3 +11,4 @@ This project manages attendance of students.
 
 ## Future Improvements
 - separate file into classes
+- different admin accounts

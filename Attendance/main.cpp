@@ -11,19 +11,32 @@ int adminView();
 int studentView();
 int adminLogin();
 int studentLogin();
+int checkStudentCredentials(string username, string password);
 int registerStudent();
 int checkListOfStudentsRegistered();
+int deleteAllStudents();
 int delay();
 
 // Implement these functions
-int deleteAllStudents();
 int deleteStudentbyRollno();
-int getAllStudentsbyRollNo();
 int checkPresenseCountbyRollno();
 int getListOfStudentsWithTheirPresenseCount();
 int markMyAttendance(string username);
 int countMyAttendance(string username);
-int checkStudentCredentials(string username, string password);
+int getLastRoll();
+
+int getLastRoll() {
+	int lastNum = 1;
+	ifstream read;
+	string line;
+	read.open("db.dat");
+	if(read) {
+		while(getline(read, line)) {
+			lastNum++;
+		}
+	}
+	return lastNum;
+}
 
 int delay()
 {
@@ -58,7 +71,7 @@ cout<<"\n 1 Register a student";
 cout<<"\n 2 Delete all students name registered";
 cout<<"\n 3 Delete student by roll number";
 cout<<"\n 4 Check list of students registered by username";
-cout<<"\n 5 Check presense count of any student by roll number";
+cout<<"\n 5 Check presence count of any student by roll number";
 cout<<"\n 6 Get list of students with their attendance count";
 cout<<"\n 0. Go back <- \n";
 int choice;
@@ -179,17 +192,6 @@ getchar();getchar();
 return 0;
 }
 
-int getAllStudentsbyRollNo()
-{
-cout<<"\n List of all students by their roll number \n";
-
-cout<<"\n Please enter any key to continue..";
-getchar();getchar();
-
-return 0;		
-	
-}
-
 int deleteStudentbyRollno()
 {
 	
@@ -298,10 +300,26 @@ return 0;
 
 int deleteAllStudents()
 {
-cout<<"\n To delete all students !!";
+while(1) {
+	cout<<"\n Are you sure, you want to delete? y | n \n";
+	char ex;
+	cin>>ex;
+	if(ex == 'y' || ex == 'Y'){
+		system("rm -fr student_data/*.dat");
+		system("rm db.dat");
+		cout<<"\n All students are deleted!!";
+		break;
+	}
+	else if(ex == 'n' || ex == 'N')
+	{
+		break;
+	}
+	else{
+		cout<<"\n Invalid choice !!!";
+		getchar();
+	}	
+}
 cout<<"\n Please enter any key to continue..";
-//todo: implement this functionality
-
 getchar(); getchar();
 return 0;
 }
@@ -327,11 +345,9 @@ if(read)
 {   int recordFound =0; 
     string line;
     while(getline(read, line)) {
-    	char name[100];
-    	strcpy(name, line.c_str());
-    	char onlyname[100];
-    	strncpy(onlyname, name, (strlen(name) - 4));
-    	cout<<" \n " << onlyname;
+		string name = line.c_str();
+		string onlyname = name.substr(0,name.length() - 4);
+		cout<<" \n " << onlyname;
     }
      read.close();        
 }
@@ -356,7 +372,7 @@ int registerStudent()
     cout<<"\n Enter name : ";     cin>>name;
     cout<<"\n Enter username : ";     cin>>username;
     cout<<"\n Enter password : ";     cin>>password;
-    cout<<"\n Enter roll number : ";     cin>>rollno;
+	rollno = to_string(getLastRoll());
     getchar();
     
     char add[100];
