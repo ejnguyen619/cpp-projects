@@ -33,8 +33,8 @@ string StudentData::get(string attr) {
         value = mom;
     } else {
         cout << "Student attribute not found!" << endl;
-        return value;
     }
+    return value;
 }
 
 void StudentData::modify(string attr,string value) {
@@ -57,7 +57,7 @@ void StudentData::modify(string attr,string value) {
     }
 }
 
-void StudentData::getAll() {
+void StudentData::printAll() {
     cout << "name: " << name << endl;
     cout << "username: " << username << endl;
     cout << "password: " << password << endl;

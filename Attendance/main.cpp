@@ -4,6 +4,7 @@
 #include <cstring>
 #include <experimental/filesystem>
 #include "StudentData.hpp"
+#include "StudentRoster.hpp"
 
 namespace fs = std::experimental::filesystem;
 using namespace std;
@@ -427,6 +428,17 @@ int registerStudent()
 }
 
 int main(int argc, char** argv) {
+
+// Test Classes
+// StudentData data("name","username","password","rollNumber","address","dad","mom");
+// cout << data.get("name") << endl;
+// data.modify("name", "notname");
+// data.printAll();
+
+// auto map = StudentRoster{};
+// map.put(1,&data);
+// StudentData getStudent = *map.get(1);
+// cout << getStudent.get("name") << endl;
 	
 const auto currentDir = fs::current_path();
 const auto dir = currentDir / "student_data";

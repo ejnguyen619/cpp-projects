@@ -1,4 +1,4 @@
-#include <map>
+#pragma once
 #include <string>
 using namespace std;
 
@@ -17,5 +17,5 @@ class StudentData {
                     string inrollNum, string inaddress, string indad, string inmom);
         string get(string attr);
         void modify(string attr, string value);
-        void getAll();
+        void printAll();
 };
