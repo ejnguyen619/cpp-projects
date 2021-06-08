@@ -3,6 +3,7 @@
 #include <fstream>
 #include <cstring>
 #include <experimental/filesystem>
+#include "StudentData.hpp"
 
 namespace fs = std::experimental::filesystem;
 using namespace std;
