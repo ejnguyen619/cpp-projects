@@ -5,6 +5,7 @@
 #include <experimental/filesystem>
 #include "StudentData.hpp"
 #include "StudentRoster.hpp"
+#include "options.hpp"
 
 namespace fs = std::experimental::filesystem;
 using namespace std;
