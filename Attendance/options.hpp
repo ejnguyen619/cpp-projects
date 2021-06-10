@@ -1,3 +1,4 @@
+#include "StudentRoster.hpp"
 #include <string>
 using namespace std;
 
@@ -20,4 +21,7 @@ class options {
         int markMyAttendance(string username);
         int countMyAttendance(string username);
         int getLastRoll();
+        void exitApp();
+    private:
+        StudentRoster map = StudentRoster{};
 };

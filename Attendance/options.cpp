@@ -1,4 +1,5 @@
 #include "options.hpp"
+#include "StudentData.hpp"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -20,10 +21,14 @@ int options::adminView() {
     int choice;
 
     cout<<"\n Enter your choice: ";
-    cin>>choice;
-
-    switch(choice)
-    {
+    if(!(cin>>choice)) {
+        cout<<"\n Invalid choice. Enter again ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        continue;
+    } else {
+        switch(choice)
+        {
         case 1: registerStudent();break;  
         case 2: deleteAllStudents(); break;
         case 3: deleteStudentbyRollno(); break;
@@ -31,13 +36,15 @@ int options::adminView() {
         case 5: checkPresenseCountbyRollno(); break;
         case 6: getListOfStudentsWithTheirPresenseCount(); break;
         case 0: goBack = 1;break;
-        default: cout<<"\n Invalid choice. Enter again ";           	
-    }   
+        default: cout<<"\n Invalid choice. Enter again ";
+        getchar();           	
+        }   
 
-    if(goBack == 1)
-    {
-    break; //break the loop
-    }     
+        if(goBack == 1)
+        {
+        break; //break the loop
+        } 
+    }    
 
     }
 
@@ -76,19 +83,25 @@ int options::studentView() {
     int choice;
 
     cout<<"\n Enter your choice: ";
-    cin>>choice;
-
-    switch(choice)
-    {
+    if(!(cin>>choice)) {
+        cout<<"\n Invalid choice. Enter again ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+        continue;
+    } else {
+        switch(choice)
+        {
         case 1: markMyAttendance(username); break;
         case 2: countMyAttendance(username); break;
         case 0: goBack = 1;break;
-        default: cout<<"\n Invalid choice. Enter again ";           	
-    }   
+        default: cout<<"\n Invalid choice. Enter again ";
+        getchar();          	
+        }   
 
-    if(goBack == 1)
-    {
-    break; //break the loop
+        if(goBack == 1)
+        {
+        break; //break the loop
+        }    
     }     
         
     }   
@@ -218,6 +231,10 @@ int options::registerStudent() {
 	out1<<rollno<<"\n"; 	out1<<add<<"\n"; 	out1<<father<<"\n";
 	out1<<mother<<"\n";
 	out1.close();
+
+    // Put student data into map
+    // StudentData data(name,username,password,rollno,address,father,mother);
+    // map.put(stoi(rollno),&data);
 
 	cout<<"\n Student registered successfully !!";
     
@@ -359,4 +376,25 @@ int options::getLastRoll() {
 		}
 	}
 	return lastNum; 
+}
+
+void options::exitApp() {
+    while(1)
+	{
+	system("clear");
+	cout<<"\n Are you sure, you want to exit? y | n \n";
+	char ex;
+	cin>>ex;
+	if(ex == 'y' || ex == 'Y')
+	exit(0);
+	else if(ex == 'n' || ex == 'N')
+	{
+	break;
+	}
+	else{
+	cout<<"\n Invalid choice !!!";
+	getchar();
+	}
+
+	}
 }
