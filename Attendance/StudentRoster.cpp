@@ -9,3 +9,20 @@ StudentData* StudentRoster::get(int key) const {
     const auto it = mMap.find(key);
     return it == mMap.end() ? 0 : it->second;
 }
+
+std::string StudentRoster::getAll() {
+    string usernames = "";
+    for (auto i = mMap.begin(); i != mMap.end(); i++) {
+        StudentData data = *i->second;
+        usernames += ("\n" + data.get("username")); 
+    }
+    return usernames;
+}
+
+bool StudentRoster::isEmpty() {
+    return mMap.empty();
+}
+
+void StudentRoster::clearAllData() {
+    mMap.clear();
+}

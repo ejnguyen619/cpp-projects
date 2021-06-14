@@ -1,6 +1,7 @@
 #pragma once
 #include <map>
 #include "StudentData.hpp"
+#include <string>
 
 class StudentRoster {
     private:
@@ -10,4 +11,7 @@ class StudentRoster {
         StudentRoster() = default;
         void put(int key, StudentData* value);
         StudentData* get(int key) const;
+        std::string getAll();
+        bool isEmpty();
+        void clearAllData();
 };

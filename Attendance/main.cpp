@@ -14,6 +14,7 @@ if(fs::is_directory(dir) == 0) {
 	// Create student_data directory
 	fs::create_directory("./student_data");
 }
+choices.importData();
 
 while(1)
 {

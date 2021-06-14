@@ -14,6 +14,7 @@ class options {
         int checkListOfStudentsRegistered();
         int deleteAllStudents();
         int delay();
+        void importData();
         // Implement these functions
         int deleteStudentbyRollno();
         int checkPresenseCountbyRollno();

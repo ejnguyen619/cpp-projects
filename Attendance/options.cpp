@@ -6,6 +6,29 @@
 #include <cstring>
 using namespace std;
 
+void options::importData() {
+    ifstream read;
+    read.open("db.dat");
+
+    if (read) {
+        string line;
+        while(getline(read, line)) {
+            ifstream studentFile;
+            studentFile.open("student_data/" + line);
+            string data[7];
+            string line2;
+            for(int i = 0; i < 7; i++) {
+                getline(studentFile, line2);
+                data[i] = line2;
+            }
+            // StudentData student(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
+            // map.put(stoi(data[3]),&student);
+            studentFile.close();
+        }
+        read.close(); 
+    }
+}
+
 int options::adminView() {
     int goBack = 0;
     while(1)
@@ -233,8 +256,8 @@ int options::registerStudent() {
 	out1.close();
 
     // Put student data into map
-    // StudentData data(name,username,password,rollno,address,father,mother);
-    // map.put(stoi(rollno),&data);
+    StudentData data(name,username,password,rollno,address,father,mother);
+    map.put(stoi(rollno),&data);
 
 	cout<<"\n Student registered successfully !!";
     
@@ -244,27 +267,15 @@ int options::registerStudent() {
 }
 
 int options::checkListOfStudentsRegistered() {
-    cout<<"\n - Check List of Student Registered by Username-- ";	
+    cout<<"\n - Check List of Student Registered by Username--";	
 
     //check if record already exist..
-    ifstream read;
-    read.open("db.dat");
-
-    if(read)
-    {   int recordFound =0; 
-        string line;
-        while(getline(read, line)) {
-            string name = line.c_str();
-            string onlyname = name.substr(0,name.length() - 4);
-            cout<<" \n " << onlyname;
-        }
-        read.close();        
-    }
-    else
-    {
-    cout<<"\n No record found :(";
-    }
-        
+    if(!map.isEmpty()) {
+        string usernameList = map.getAll();
+        cout << usernameList;
+    } else {
+        cout<<"\n No record found :(";
+    }  
         
     cout<<"\n Please enter any key to continue..";
     getchar(); getchar();
@@ -279,6 +290,7 @@ int options::deleteAllStudents() {
         if(ex == 'y' || ex == 'Y'){
             system("rm -fr student_data/*.dat");
             system("rm db.dat");
+            map.clearAllData();
             cout<<"\n All students are deleted!!";
             break;
         }
