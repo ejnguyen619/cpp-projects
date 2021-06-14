@@ -6,27 +6,44 @@
 #include <cstring>
 using namespace std;
 
-void options::importData() {
+vector<string> options::listStudentFiles() {
     ifstream read;
     read.open("db.dat");
+    vector<string> usernameList;
 
     if (read) {
         string line;
         while(getline(read, line)) {
-            ifstream studentFile;
-            studentFile.open("student_data/" + line);
-            string data[7];
-            string line2;
-            for(int i = 0; i < 7; i++) {
-                getline(studentFile, line2);
-                data[i] = line2;
-            }
-            // StudentData student(data[0],data[1],data[2],data[3],data[4],data[5],data[6]);
-            // map.put(stoi(data[3]),&student);
-            studentFile.close();
+            usernameList.push_back(line);
         }
-        read.close(); 
+        read.close();
+        return usernameList; 
+    } else {
+        return {};
     }
+}
+
+void options::importStudentData(string data) {
+    ifstream read;
+	string temp = "student_data/" + data;
+    string name, username, password, rollNum, address, dad, mom;
+    string line;
+	read.open(temp.c_str());
+    for(int i = 0; i < 7; i++) {
+        getline(read,line);
+        switch(i) {
+            case 0: name = line; break;
+            case 1: username = line; break;
+            case 2: password = line; break;
+            case 3: rollNum = line; break;
+            case 4: address = line; break;
+            case 5: dad = line; break;
+            case 6: mom = line; break;
+        }
+    }
+    StudentData *student = new StudentData(name,username,password,rollNum,address,dad,mom);
+    map.put(stoi(rollNum),student);
+    read.close();
 }
 
 int options::adminView() {

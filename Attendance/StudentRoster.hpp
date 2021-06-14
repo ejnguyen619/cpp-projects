@@ -11,7 +11,7 @@ class StudentRoster {
         StudentRoster() = default;
         void put(int key, StudentData* value);
         StudentData* get(int key) const;
-        std::string getAll();
+        string getAll();
         bool isEmpty();
         void clearAllData();
 };

@@ -10,10 +10,10 @@ StudentData* StudentRoster::get(int key) const {
     return it == mMap.end() ? 0 : it->second;
 }
 
-std::string StudentRoster::getAll() {
+string StudentRoster::getAll() {
     string usernames = "";
     for (auto i = mMap.begin(); i != mMap.end(); i++) {
-        StudentData data = *i->second;
+        StudentData data = *(i->second);
         usernames += ("\n" + data.get("username")); 
     }
     return usernames;

@@ -14,7 +14,12 @@ if(fs::is_directory(dir) == 0) {
 	// Create student_data directory
 	fs::create_directory("./student_data");
 }
-choices.importData();
+vector<string> fileList = choices.listStudentFiles();
+if(!fileList.empty()) {
+	for(int i = 0; i < fileList.size(); i++) {
+		choices.importStudentData(fileList[i]);
+	}
+}
 
 while(1)
 {

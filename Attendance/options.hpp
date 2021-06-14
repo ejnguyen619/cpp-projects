@@ -1,5 +1,6 @@
 #include "StudentRoster.hpp"
 #include <string>
+#include <vector>
 using namespace std;
 
 class options {
@@ -14,7 +15,8 @@ class options {
         int checkListOfStudentsRegistered();
         int deleteAllStudents();
         int delay();
-        void importData();
+        vector<string> listStudentFiles();
+        void importStudentData(string data);
         // Implement these functions
         int deleteStudentbyRollno();
         int checkPresenseCountbyRollno();
