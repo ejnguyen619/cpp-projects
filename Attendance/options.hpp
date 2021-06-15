@@ -25,6 +25,7 @@ class options {
         int countMyAttendance(string username);
         int getLastRoll();
         void exitApp();
+        void updateDB(string filename);
     private:
         StudentRoster map = StudentRoster{};
 };

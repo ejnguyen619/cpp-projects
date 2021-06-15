@@ -14,6 +14,7 @@ vector<string> options::listStudentFiles() {
     if (read) {
         string line;
         while(getline(read, line)) {
+            if(!line.size()) continue;
             usernameList.push_back(line);
         }
         read.close();
@@ -226,7 +227,7 @@ int options::registerStudent() {
     cout<<"\n Enter name : ";     cin>>name;
     cout<<"\n Enter username : ";     cin>>username;
     cout<<"\n Enter password : ";     cin>>password;
-	rollno = to_string(getLastRoll());
+	rollno = to_string(getLastRoll()+1);
     getchar();
     
     char add[100];
@@ -350,9 +351,34 @@ int options::delay() {
 int options::deleteStudentbyRollno() {
     cout<<"\n Delete any student by their roll number \n";		
 
+    while(1) {
+        int ex;
+        cout<<"\n Enter roll number or 0 to cancel \n";
+        if(!(cin>>ex)) {
+            cout<<"\n Invalid choice. Enter again ";
+            cin.clear();
+            cin.ignore(10000, '\n');
+        } else {
+            if(ex == 0) break;
+            else {
+                if(map.keyExists(ex)) {
+                    StudentData student = *map.get(ex);
+                    string filepath = "rm student_data/" + student.get("username") + ".dat";
+                    char* command = const_cast<char*>(filepath.c_str());
+                    system(command);
+                    updateDB(student.get("username") + ".dat");
+                    map.deleteStudent(ex);
+                    cout<<"\n Student is deleted!!";
+                    break; 
+                } else {
+                    cout << "\n No results found. Try again";
+                }
+            }
+        }	
+    }
+    
     cout<<"\n Please enter any key to continue..";
-    getchar();getchar();
-
+    getchar(); getchar();
     return 0;
 }
 
@@ -395,16 +421,11 @@ int options::countMyAttendance(string username) {
 }
 
 int options::getLastRoll() {
-   	int lastNum = 1;
-	ifstream read;
-	string line;
-	read.open("db.dat");
-	if(read) {
-		while(getline(read, line)) {
-			lastNum++;
-		}
-	}
-	return lastNum; 
+    if(!map.isEmpty()) {
+        return map.rosterSize();
+    } else {
+        return 0;
+    }
 }
 
 void options::exitApp() {
@@ -426,4 +447,19 @@ void options::exitApp() {
 	}
 
 	}
+}
+
+void options::updateDB(string filename) {
+    ifstream filein("db.dat");
+    ofstream fileout("db2.dat");
+    string line;
+    while(filein >> line) {
+        if(line == filename) {
+            continue;
+        }
+        line += "\n";
+        fileout << line;
+    }
+    system("rm db.dat");
+    system("mv db2.dat db.dat");
 }

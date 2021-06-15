@@ -14,4 +14,7 @@ class StudentRoster {
         string getAll();
         bool isEmpty();
         void clearAllData();
+        int rosterSize();
+        void deleteStudent(int rollNumber);
+        bool keyExists(int key);
 };

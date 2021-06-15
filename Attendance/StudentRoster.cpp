@@ -1,4 +1,5 @@
 #include "StudentRoster.hpp"
+#include <iostream>
 #include <iterator>
 
 void StudentRoster::put(int key, StudentData* value) {
@@ -24,5 +25,28 @@ bool StudentRoster::isEmpty() {
 }
 
 void StudentRoster::clearAllData() {
-    mMap.clear();
+    if(!isEmpty()) mMap.clear();
+    else {
+        cout << "No student data available" << endl;
+    }
+}
+
+int StudentRoster::rosterSize() {
+    return mMap.size();
+}
+
+void StudentRoster::deleteStudent(int rollNumber) {
+    if(!isEmpty()) {
+        mMap.erase(rollNumber); 
+    } else {
+        cout << "No student data available" << endl;
+    }
+}
+
+bool StudentRoster::keyExists(int key) {
+    if(mMap.find(key) != mMap.end()) {
+        return true;
+    } else {
+        return false;
+    }
 }
