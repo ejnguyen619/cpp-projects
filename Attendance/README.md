@@ -10,5 +10,6 @@ This project manages attendance of students.
 - uses g++ compiler
 
 ## Future Improvements
-- separate file into classes
+- separate file into classes based on roles
 - different admin accounts
+- track attendance record in real time

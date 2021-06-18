@@ -13,6 +13,7 @@ StudentData::StudentData(string inname, string inusername, string inpassword,
     address = inaddress;
     dad = indad;
     mom = inmom;
+    attendance = 0;
 }
 
 string StudentData::get(string attr) {
@@ -65,4 +66,12 @@ void StudentData::printAll() {
     cout << "address: " << address << endl;
     cout << "dad: " << dad << endl;
     cout << "mom: " << mom << endl;
+}
+
+void StudentData::markAttendance() {
+    attendance++;
+}
+
+void StudentData::getAttendance() {
+    cout << "\n You have been present for " << attendance << " days.";
 }

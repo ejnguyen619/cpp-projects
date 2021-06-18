@@ -11,6 +11,7 @@ class StudentData {
         string address;
         string dad;
         string mom;
+        int attendance;
 
     public:
         StudentData(string inname, string inusername, string inpassword, 
@@ -18,4 +19,6 @@ class StudentData {
         string get(string attr);
         void modify(string attr, string value);
         void printAll();
+        void markAttendance();
+        void getAttendance();
 };

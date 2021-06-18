@@ -56,8 +56,6 @@ int options::adminView() {
     cout<<"\n 2 Delete all students name registered";
     cout<<"\n 3 Delete student by roll number";
     cout<<"\n 4 Check list of students registered by username";
-    cout<<"\n 5 Check presence count of any student by roll number";
-    cout<<"\n 6 Get list of students with their attendance count";
     cout<<"\n 0. Go back <- \n";
     int choice;
 
@@ -74,8 +72,6 @@ int options::adminView() {
         case 2: deleteAllStudents(); break;
         case 3: deleteStudentbyRollno(); break;
         case 4: checkListOfStudentsRegistered(); break;
-        case 5: checkPresenseCountbyRollno(); break;
-        case 6: getListOfStudentsWithTheirPresenseCount(); break;
         case 0: goBack = 1;break;
         default: cout<<"\n Invalid choice. Enter again ";
         getchar();           	
@@ -382,15 +378,6 @@ int options::deleteStudentbyRollno() {
     return 0;
 }
 
-int options::checkPresenseCountbyRollno() {
-    cout<<"\n Check presence count of any student by roll number \n";	
-
-    cout<<"\n Please enter any key to continue.."	;
-    getchar();getchar();
-
-    return 0; 
-}
-
 int options::getListOfStudentsWithTheirPresenseCount() {
     cout<<"\n All students with their presence count !!";
     cout<<"\n Please enter any key to continue..";
@@ -401,7 +388,20 @@ int options::getListOfStudentsWithTheirPresenseCount() {
 }
 
 int options::markMyAttendance(string username) {
-    cout<<"\n Mark attendance for today !!";	
+    string filename = username + ".dat";
+    ifstream read;
+    read.open("db.dat");
+    string line;
+    int line_num = 0;
+    while(getline(read,line)) {
+        line_num++;
+        if(line == filename) {
+            break;
+        }
+    }
+    StudentData student = *map.get(line_num);
+    student.markAttendance();
+    cout<< "\n You have been marked present for today.";	
     cout<<"\n Please enter any key to continue..";
     //todo: implement this functionality
 
@@ -411,7 +411,19 @@ int options::markMyAttendance(string username) {
 }
 
 int options::countMyAttendance(string username) {
-    cout<<"\n Count my attendance for today !!";	
+    string filename = username + ".dat";
+    ifstream read;
+    read.open("db.dat");
+    string line;
+    int line_num = 0;
+    while(getline(read,line)) {
+        line_num++;
+        if(line == filename) {
+            break;
+        }
+    }
+    StudentData student = *map.get(line_num);
+    student.getAttendance();	
     cout<<"\n Please enter any key to continue..";
     //todo: implment this functionality
 
