@@ -6,8 +6,7 @@ Projects made using C++. Purpose is to gain practice and skills necessary to bui
 ## Projects List
 Attendance Management: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Attendance)
 
-Library Management: Source
-
-Hotel Management: Source
+Credit Card Validator: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Credit-Card-Validator)
 
 ## Project Ideas
+Search Engine
