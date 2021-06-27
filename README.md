@@ -8,5 +8,9 @@ Attendance Management: [Source](https://github.com/ejnguyen619/cpp-projects/tree
 
 Credit Card Validator: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Credit-Card-Validator)
 
+Infix-Postfix-Converter: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Infix-Postfix-Converter)
+
+Number-Guessing-Game: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Number-Guessing-Game)
+
 ## Project Ideas
 Search Engine
