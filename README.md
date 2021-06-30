@@ -12,5 +12,4 @@ Infix-Postfix-Converter: [Source](https://github.com/ejnguyen619/cpp-projects/tr
 
 Number-Guessing-Game: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Number-Guessing-Game)
 
-## Project Ideas
-Search Engine
+Tic-Tac-Toe: [Source](https://github.com/ejnguyen619/cpp-projects/tree/main/Tic-Tac-Toe)
